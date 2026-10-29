@@ -1,0 +1,11 @@
+{
+  "threadId": "thread-curl-1",
+  "runId": "run-1",
+  "state": {},
+  "messages": [
+    { "id": "m1", "role": "user", "content": "Refund 500 rupees on ORD-1042, the customer got a damaged item." }
+  ],
+  "tools": [],
+  "context": [],
+  "forwardedProps": {}
+}

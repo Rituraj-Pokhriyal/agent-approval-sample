@@ -1,0 +1,9 @@
+body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 16px; }
+.hint { color: #666; }
+.approval { border: 1px solid #d0a400; background: #fff8e1; border-radius: 8px; padding: 12px; margin: 8px 0; }
+.approval dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 8px 0; }
+.approval dt { font-weight: 600; }
+.approval dd { margin: 0; }
+.approval button { margin-right: 8px; padding: 6px 14px; border-radius: 6px; border: 1px solid #999; cursor: pointer; }
+.approval .approve { background: #1b7f3b; color: #fff; border-color: #1b7f3b; }
+.approval .status { font-weight: 600; }

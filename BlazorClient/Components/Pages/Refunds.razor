@@ -1,0 +1,45 @@
+@page "/"
+@inject IChatClient ChatClient
+
+<PageTitle>Refund agent (Blazor)</PageTitle>
+
+<h1>Refund agent, Blazor client</h1>
+<p class="hint">Try: <em>Refund ₹500 on ORD-1042, the customer got a damaged item.</em></p>
+
+<ChatPage Agent="_agent" Placeholder="Ask about an order...">
+    <MessageListContent>
+        @* Replaces the built-in approval UI, which shows the raw arguments as JSON. *@
+        <BlockRenderer TBlock="FunctionApprovalBlock" Context="block">
+            <div class="approval">
+                <strong>The agent wants to run <code>@block.ToolName</code></strong>
+
+                @if (block.Arguments is { Count: > 0 })
+                {
+                    <dl>
+                        @foreach (var arg in block.Arguments)
+                        {
+                            <dt>@arg.Key</dt>
+                            <dd>@arg.Value</dd>
+                        }
+                    </dl>
+                }
+
+                @if (block.Status == ApprovalStatus.Pending)
+                {
+                    <button class="approve" @onclick="block.Approve">Approve</button>
+                    <button class="reject" @onclick="() => block.Reject()">Reject</button>
+                }
+                else
+                {
+                    <span class="status">@block.Status</span>
+                }
+            </div>
+        </BlockRenderer>
+    </MessageListContent>
+</ChatPage>
+
+@code {
+    private UIAgent _agent = default!;
+
+    protected override void OnInitialized() => _agent = new UIAgent(ChatClient);
+}
